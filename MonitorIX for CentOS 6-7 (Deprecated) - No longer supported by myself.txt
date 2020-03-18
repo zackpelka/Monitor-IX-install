@@ -1,0 +1,19 @@
+sudo yum install epel-release monitorix -y
+
+# sudo vim /etc/monitorix/monitorix.conf and modify settings as needed
+# Add the following to httpd.conf if you want to monitor Apache
+
+sudo vim /etc/httpd/conf/httpd.conf
+
+#Add the following lines to the bottom of your .conf file
+ExtendedStatus On
+<Location /server-status>
+SetHandler server-status
+</Location>
+
+#Start MonitorIX
+sudo service monitorix start
+sudo chkconfig monitorix on
+
+# Access MonitorIX
+http://serverIP:8080/monitorix
